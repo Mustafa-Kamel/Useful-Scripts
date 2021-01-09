@@ -35,7 +35,7 @@ py change_files_extension.py [source_extension] [target_extension]
 
 
 Examples
-________
+--------
 1. PHP Example
 ```bash
 php change_files_extension.php txt php
