@@ -1,4 +1,4 @@
-Change Files Extensions
+Change Files Extensions [OPEN HERE](https://github.com/Mustafa-Kamel/Useful-Scripts/tree/master/Change%20Files%20Extension)
 =====================
 This script allows you to change the extensions of multiple files (e.g. any type of files: images, videos, text etc.) having the same extension to another extension at once by executing a simple command.
 
