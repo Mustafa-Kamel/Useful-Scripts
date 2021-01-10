@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color Palette Example By Mustafa Kamel</title>
+    <link href="assets/css/style-default.css" rel="stylesheet"> <!-- The default stylesheet -->
+    <!-- You should have multiple stylesheet files in the same directory following this naming convention, style-color.css when color is the main style color, each file should have different styling, and you may change anything like animations or positioning not just colors  -->
+
+    <!-- What happens is that we have a color palette which appears on clicking an icon e.g. font-awesome icon, the color palette has multiple color boxes inside it, and the default stylesheet changes upon clicking those boxes, i.e when you click the red box which has a data-value equals red the stylesheet href value changes to assets/css/style-red.css and so on,
+  	you may has your styles in a different place so you should just change the path in the link-tag above and in the js inside the colorSel.click() function -->
+    <style>
+        #color-palette i {
+            border-radius: 2px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        #color-palette ul {
+            display: none;
+            list-style: none;
+            width: 160px;
+            height: 100px;
+            margin: 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        #color-palette ul li {
+            float: right;
+            margin: 10px;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        #color-palette {
+            position: fixed;
+            right: 0px;
+            top: 150px;
+        }
+
+        #color-display {
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: #1c6968;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="color-palette" class="text-primary">
+        <i id="color-brush">Color</i>
+        <ul id="color-options">
+            <!-- The color options, the data-value should equal the name of the styling file after style-, so if the file name is style-red.css so we take red as the data-value -->
+            <li data-value="red"></li>
+            <li data-value="green"></li>
+            <li data-value="blue"></li>
+            <li data-value="olive"></li>
+            <li data-value="orange"></li>
+            <li data-value="pink"></li>
+        </ul>
+    </section>
+
+    <!-- You may have a class could bg-primary or multiple classes having different styling on each file and when the file changes the class will have the new styling described inside this file  -->
+    <div id="color-display" class="bg-primary"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $('#color-brush').click(function () {
+            $('#color-options').fadeToggle();	// On clicking the color-brush icon toggle the display of the color palette
+        });
+
+        // Specify the background-color of the color boxes (color options)
+        var colorSel = $('#color-palette ul li')
+        colorSel
+            .eq(0).css('background-color', "#c83939").end() // red
+            .eq(1).css('background-color', "#1ca13e").end() // green
+            .eq(2).css('background-color', "#4680FF").end() // blue
+            .eq(3).css('background-color', "#34b97d").end() // olive
+            .eq(4).css('background-color', "#bd5d38").end() // orange
+            .eq(5).css('background-color', "#e63169") 		// pink
+
+        // On clicking any color option change the vlaue of the href attribute in the link tag to the new styling file according to the data-value of the color option box
+        colorSel.click(function () {
+            $("link[href *= 'style']")
+                .attr('href', 'assets/css/style-' + $(this).attr('data-value') + '.css');
+
+            $("#color-display").css('background-color', $(this).attr('data-value')); // Feel free to remove this line, it is just to change the background-color of the div with the id color display just to view the changes
+        });
+    </script>
+</body>
+
+</html>
