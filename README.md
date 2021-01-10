@@ -9,5 +9,5 @@ This script allows you to change the extensions of multiple files (e.g. any type
 This script can handle the operation of retrieving data from the locale files easily for the current language registered in session by passing a string like `'blog.post.title'` while `blog` is a directory and `post` is file and `title` is the key for the string to retrieve.
 
 
-## 3. Color Theme Switch [OPEN HERE](https://github.com/Mustafa-Kamel/Useful-Scripts/tree/master/Color%20theme%20switch)
+## 3. Color Theme Switch [OPEN HERE](https://github.com/Mustafa-Kamel/Useful-Scripts/tree/master/Color%20Theme%20Switch)
 This script helps you add a color palette to a page or website for the user to use it to alter the page style theme.
