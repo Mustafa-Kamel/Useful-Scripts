@@ -24,16 +24,26 @@ At first you should place all the files you wanna change their extension to at t
 Assuming you have one of `php` or `python` installed, choose the script that fits you and move it to the files directory then run the corresponding command in cmd or terminal and pass the source extension and the target extension as arguments to it respectively.
 
 1. PHP Command
-`php change_files_extension.php [source_extension] [target_extension]`
+```bash
+php change_files_extension.php [source_extension] [target_extension]
+```
 
 2. Python Command
-`py change_files_extension.py [source_extension] [target_extension]`
+```bash
+py change_files_extension.py [source_extension] [target_extension]
+```
 
 
 Examples
-________
-1. `php change_files_extension.php txt php` 
+--------
+1. PHP Example
+```bash
+php change_files_extension.php txt php
+```
 > While 'txt' is the source extension and 'php' is the target extension
 
-2. `py change_files_extension.py png jpg`
+2. Python Example
+```bash
+py change_files_extension.py png jpg
+```
 > While 'png' is the source extension and 'jpg' is the target extension
