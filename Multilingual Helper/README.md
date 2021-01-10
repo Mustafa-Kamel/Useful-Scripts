@@ -1,4 +1,4 @@
-# Multilingual
+# Multilingual Helper
 
 ## How it works?
 This script can handle the operation of retrieving data from the locale files easily for the current language registered in session by passing a string like `'blog.post.title'` while `blog` is a directory and `post` is file and `title` is the key for the string to retrieve.
