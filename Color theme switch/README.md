@@ -1,4 +1,4 @@
-# Color theme switch
+# Color Theme Switch
 This script helps you add a color palette to a page or website for the user to use it to alter the page style theme.
 
 **Note** that you should have multiple stylesheet files, one for each theme.
