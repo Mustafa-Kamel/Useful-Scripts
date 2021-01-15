@@ -2,7 +2,7 @@
 
 This script will help you to rename (to its original name) and move the videos (and other valid extensions you pass as an argument) downloaded by IDM (Internet Download Manager) from IDM folder in your `%AppData%` folder to your desktop by running it from the cmd using this command
 ``` bash
-php move_idm_downloaded_mp4_files_to_desktop.php [extension]
+php move.php [extension]
 ```
  
 **NOTICE:** This code is supposed to work correctly with video files and it was tested on a video playlist downloaded from youtube, Howerver you can still use it for other extensions by passing the extension as an argument to the program run command
@@ -19,7 +19,7 @@ cd $pathname
 ```
 then use this command to run this program
 ```bash
-php move_idm_downloaded_mp4_files_to_desktop.php [extension]
+php move.php [extension]
 ```
 while "[extension]" is the expected extension to the files being moved
  
