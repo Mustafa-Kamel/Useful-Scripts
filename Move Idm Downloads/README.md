@@ -1,6 +1,6 @@
 # Move idm downloaded mp4 files to the desktop after renamin it to the original name of the file name
 
-This script will help you to rename (to its original name) and move the videos (and other extensions i.e. review the extension variable) downloaded by IDM (Internet Download Manager) from IDM folder in your `%AppData%` folder to your desktop folder by running it from the cmd using this command
+This script will help you to rename (to its original name) and move the videos (and other valid extensions you pass as an argument) downloaded by IDM (Internet Download Manager) from IDM folder in your `%AppData%` folder to your desktop folder by running it from the cmd using this command
 ``` bash
 php move_idm_downloaded_mp4_files_to_desktop.php [extension]
 ```
