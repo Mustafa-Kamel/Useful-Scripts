@@ -7,7 +7,7 @@
  *
  * This script will help you to rename (to its original name) and move the videos (and other extensions i.e. review the extension variable) downloaded by
  * IDM (Internet Download Manager) from IDM folder in your %AppData% folder to your desktop folder by running it from the cmd using this command
- * "php move_idm_downloaded_mp4_files_to_desktop.php [extension]"
+ * "php move.php [extension]"
  *
  *
  * NOTICE: This code is supposed to work correctly with video files and it was tested on a video playlist downloaded from youtube, Howerver you can still use it for other extensions by passing the extension as an argument to the program run command
@@ -22,7 +22,7 @@
  * HOW TO USE THIS SCRIPT?
  * =======================
  * You can use this script from cmd by changing the active directory to the path which have this file using this command (cd $pathname)
- * then use this command to run this program (php move_idm_downloaded_mp4_files_to_desktop.php [extension])
+ * then use this command to run this program (php move.php [extension])
  * while "[extension]" is the expected extension to the files being moved
  *
  * WHY DID I WRITE THIS CODE?
@@ -59,10 +59,18 @@ $ext = '.' . $ext;
 // LOOP OVER ALL THE DOWNLOAD DIRECTORIES IN [\AppData\Roaming\IDM\DwnlData\USERNAME]
 foreach (glob("$_SERVER[USERPROFILE]\AppData\Roaming\IDM\DwnlData\\$_SERVER[USERNAME]\*", GLOB_ONLYDIR) as $dir) {
     // GET THE CONTENTS OF THE LOG FILE OF THE CURRENT DOWNLOAD
-    $file = file_get_contents(glob("$dir/*.log")[0]);
+	if(! is_array(glob("$dir/*.log")) || ! isset(glob("$dir/*.log")[0]) || ! file_exists(glob("$dir/*.log")[0])) {
+		echo 'Error: log file is not found!';
+		continue;
+	}
+	$logfile = glob("$dir/*.log")[0];
+    $file = file_get_contents($logfile);
+	$start = strpos($file, 'filename="') + strlen('filename="');
+	$length = strpos($file, $ext . '"') - strpos($file, 'filename="') - strlen('filename="') + strlen($ext);
+	$oldfilename = substr($file, $start, $length);
 
     // GET THE FILENAME OF THE DOWNLOADED FILE FROM THE LOG FILE AND REPLACE THE UNEXPECTED CHARACTERS BY SPACES ' ' TO AVOID THE PROBLEM WITH NAMING THE FILE
-    $filename = preg_replace('/[<>:|?*\\/\\\]/', ' ', substr($file, strpos($file, 'filename="') + strlen('filename="'), strpos($file, $ext . '"') - strpos($file, 'filename="') - strlen('filename="') + strlen($ext)), $filename);
+    $filename = preg_replace('/[<>:|?*\\/\\\]/', ' ', $oldfilename);
 
     // LOOP OVER ALL THE FILES IN EACH DOWNLOAD DIRECTORY AND FIND ONLY FILES WITHOUT THE '.log' EXTENSION 
     foreach (glob("$dir/*") as $file) {
@@ -71,9 +79,10 @@ foreach (glob("$_SERVER[USERPROFILE]\AppData\Roaming\IDM\DwnlData\\$_SERVER[USER
             // RENAME THE FILE TO THE ACTUAL FILENAME IN THE '.log' FILE
             rename($file, $dir . '/' . $filename);
             // COPY THE FILE IN THE DOWNLOAD DIRECTORY TO THE DESKTOP
-            if (copy("$dir/$filename", $_SERVER['USERPROFILE'] . "\Desktop\\$filename"))
+            if (copy("$dir/$filename", $_SERVER['USERPROFILE'] . "\Desktop\\$filename")) {
                 // IF THE FILE HAS BEEN COPIED SUCCESSFULLY TO THE DESKTOP THEN REMOVE IT
                 unlink("$dir/$filename");
+			}
         }
     }
 }
